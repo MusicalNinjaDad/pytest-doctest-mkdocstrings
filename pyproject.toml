@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-doctest-mkdocstring"
+# description = "Tools for handling recursive sequences (of sequences of sequences of ...)"
+# readme = "README.md"
+# license = {text = "MIT"}
+# authors = [{name = "Mike Foster"}]
+dynamic = ["version"]
+# requires-python = ">=3.7"
+# classifiers = [
+#     "Programming Language :: Python :: 3",
+#     "License :: OSI Approved :: MIT License",
+#     "Operating System :: OS Independent",
+#     "Topic :: Software Development :: Libraries :: Python Modules",
+#     "Intended Audience :: Developers",
+#     "Natural Language :: English",
+# ]
+
+# [project.urls]
+# Homepage = "https://github.com/MusicalNinjaDad/recurtools"
+# # Documentation = "https://github.com/MusicalNinjaDad/recurtools"
+# Repository = "https://github.com/MusicalNinjaDad/recurtools"
+# Issues = "https://github.com/MusicalNinjaDad/recurtools/issues"
+# # Changelog = ""
+
+[tool.setuptools.dynamic]
+version = {file = "__version__"}
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.entry-points.pytest11]
+doctest_markup = "pytest_doctest_mkdocstring.patch_doctest"
+
+# [project.optional-dependencies]
+# dev = [
+#     "mkdocs",
+#     "mkdocstrings[python]",
+#     "mkdocs-material",
+#     "numpy",
+#     "pytest",
+#     "ruff",
+#     ]
+
+# [tool.pytest.ini_options]
+# xfail_strict=true
+# addopts = [
+#     "--doctest-modules",
+# ]
+
+# [tool.coverage.run]
+# branch=true
+# omit=["test_*"]
+# dynamic_context = "test_function"
+
+# [tool.ruff]
+# line-length = 120
+# format.skip-magic-trailing-comma = false
+# format.quote-style = "double"
+
+# [tool.ruff.lint]
+# select = ["ALL"]
+# flake8-pytest-style.fixture-parentheses = false
+# flake8-annotations.mypy-init-return = true
+# pydocstyle.convention = "google"
+# ignore = [
+#     "D203", # We want D211 - no blank line before class docstring
+#     "D212", # We want D213 - Multiline docstrings start on second line
+#     "D401", # First line of docstring does not need to be in imperative mood 
+#     "ANN101", # Type annotation for `self`
+#     "ANN202", # Return type annotation for private functions
+#     "W293", # Whitespace only lines are OK for us
+#     ]
+# extend-select = [
+#     "D211", # We want D211 - no blank line before class docstring
+#     "D213", # We want D213 - Multiline docstrings start on second line
+#     "D400", # First lines should end in a period (.)
+#     "D403", # First word of the first line should be capitalized
+#     "D404", # First word of the docstring should not be "This"
+#     "D405", # Section name should be properly capitalized 
+#     "D406", # Section name should end with a newline
+#     "D407", # Dashed underline after section
+#     "D408", # Section underline should be in the line following the section's name
+#     "D409", # Section underline should match the length of its name
+# ]
+
+# [tool.ruff.lint.per-file-ignores]
+# # Additional ignores for tests 
+# "**/test_*.py" = [
+#     "INP001", # Missing __init__.py
+#     "ANN", # Missing type annotations
+#     "S101", # Use of `assert`
+#     "D1", # Don't REQUIRE docstrings for tests - but they are nice
+#     ]
