@@ -4,26 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-doctest-mkdocstring"
-# description = "Tools for handling recursive sequences (of sequences of sequences of ...)"
+description = "Run pytest --doctest-modules with markdown docstrings (code blocks)"
 # readme = "README.md"
-# license = {text = "MIT"}
-# authors = [{name = "Mike Foster"}]
+authors = [{name = "Mike Foster"}]
 dynamic = ["version"]
-# requires-python = ">=3.7"
-# classifiers = [
-#     "Programming Language :: Python :: 3",
-#     "License :: OSI Approved :: MIT License",
-#     "Operating System :: OS Independent",
-#     "Topic :: Software Development :: Libraries :: Python Modules",
-#     "Intended Audience :: Developers",
-#     "Natural Language :: English",
-# ]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+]
 
-# [project.urls]
-# Homepage = "https://github.com/MusicalNinjaDad/recurtools"
+[project.urls]
+Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring"
 # # Documentation = "https://github.com/MusicalNinjaDad/recurtools"
-# Repository = "https://github.com/MusicalNinjaDad/recurtools"
-# Issues = "https://github.com/MusicalNinjaDad/recurtools/issues"
+Repository = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring"
+Issues = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring/issues"
 # # Changelog = ""
 
 [tool.setuptools.dynamic]
@@ -35,20 +34,10 @@ where = ["."]
 [project.entry-points.pytest11]
 doctest_markup = "pytest_doctest_mkdocstring.patch_doctest"
 
-# [project.optional-dependencies]
-# dev = [
-#     "mkdocs",
-#     "mkdocstrings[python]",
-#     "mkdocs-material",
-#     "numpy",
-#     "pytest",
-#     "ruff",
-#     ]
-
 # [tool.pytest.ini_options]
 # xfail_strict=true
 # addopts = [
-#     "--doctest-modules",
+#     "-p pytester",
 # ]
 
 # [tool.coverage.run]
