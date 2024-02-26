@@ -1,4 +1,4 @@
-# pytest-doctest-mkdocstring
+# pytest-doctest-mkdocstrings
 
 A pytest plugin that allows you to use doctest and enclose your example code blocks in ` ``` ` codeblocks (e.g. when building documentation with mkdocs and mkdocstring).
 
@@ -36,7 +36,7 @@ If you have code examples or expected results which actually contain ` ``` ` the
 ## Usage
 
 1. **Strongly recommended** to set up a virtual environment first! (e.g.. `python3 -m venv .venv`, `. .venv/bin/activate`)
-1. Install with `pip install pytest-doctest-mkdocstring`
+1. Install with `pip install pytest-doctest-mkdocstrings`
 1. Run pytest: `pytest --doctest-modules`
 
 You can also add the following to your `pyproject.toml` so that pytest always runs doctests:

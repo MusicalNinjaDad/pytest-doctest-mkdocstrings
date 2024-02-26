@@ -34,7 +34,7 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: pypi
-            url: https://pypi.org/p/pytest-doctest-mkdocstring
+            url: https://pypi.org/p/pytest-doctest-mkdocstrings
         permissions:
             id-token: write
         steps:

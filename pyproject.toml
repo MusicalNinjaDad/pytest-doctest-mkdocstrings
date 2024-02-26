@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pytest-doctest-mkdocstring"
+name = "pytest-doctest-mkdocstrings"
 description = "Run pytest --doctest-modules with markdown docstrings (code blocks)"
 readme = "README.md"
 authors = [{name = "Mike Foster"}]
@@ -19,10 +19,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring"
+Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
 # # Documentation = "https://github.com/MusicalNinjaDad/recurtools"
-Repository = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring"
-Issues = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstring/issues"
+Repository = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
+Issues = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings/issues"
 # # Changelog = ""
 
 [tool.setuptools.dynamic]
@@ -32,7 +32,7 @@ version = {file = "__version__"}
 where = ["."]
 
 [project.entry-points.pytest11]
-doctest_markup = "pytest_doctest_mkdocstring.patch_doctest"
+doctest_markup = "pytest_doctest_mkdocstrings.patch_doctest"
 
 # [tool.pytest.ini_options]
 # xfail_strict=true
