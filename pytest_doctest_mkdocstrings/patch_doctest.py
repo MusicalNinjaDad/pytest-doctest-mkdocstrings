@@ -39,5 +39,8 @@ def pytest_sessionstart(session) -> None:  # noqa: ANN001, ARG001
             """, re.MULTILINE | re.VERBOSE)  # noqa: N806
 
     p = doctest.DocTestParser
-    assert p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE  # noqa: S101, SLF001
-    p._EXAMPLE_RE = _MD_EXAMPLE_RE  # noqa: SLF001
+    if p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE:  # noqa: SLF001
+        p._EXAMPLE_RE = _MD_EXAMPLE_RE  # noqa: SLF001
+    else:
+        parsermismatch = f"Unexpected doctest parser encountered. Expected {_ORIGINAL_EXAMPLE_RE}, got {p._EXAMPLE_RE}"  # noqa: SLF001
+        raise ValueError(parsermismatch)
