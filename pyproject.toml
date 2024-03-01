@@ -42,11 +42,11 @@ dev = [
 [project.entry-points.pytest11]
 doctest_markup = "pytest_doctest_mkdocstrings.patch_doctest"
 
-# [tool.pytest.ini_options]
-# xfail_strict=true
-# addopts = [
-#     "-p pytester",
-# ]
+[tool.pytest.ini_options]
+xfail_strict=true
+# addopts = []
+pytester_example_dir = "test/assets"
+norecursedirs = "test/assets"
 
 # [tool.coverage.run]
 # branch=true
@@ -88,12 +88,12 @@ extend-select = [
     "D400", # First lines should end in a period (.)
     "D403", # First word of the first line should be capitalized
     "D404", # First word of the docstring should not be "This"
-    "D405", # Section name should be properly capitalized 
+    "D405", # Section name should be properly capitalized
     "D406", # Section name should end with a newline
 ]
 
 [tool.ruff.lint.per-file-ignores]
-# Additional ignores for tests 
+# Additional ignores for tests
 "test/**" = [
     "INP001", # Missing __init__.py
     "ANN", # Missing type annotations
@@ -104,5 +104,5 @@ extend-select = [
 
 "**/__init__.py" = [
     "D104", # Don't require module docstring in __init__.py
-    "F401", # Unused imports are fine: using __init__.py to expose them with implicit __ALL__ 
+    "F401", # Unused imports are fine: using __init__.py to expose them with implicit __ALL__
 ]
