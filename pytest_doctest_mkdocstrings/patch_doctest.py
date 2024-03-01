@@ -18,7 +18,8 @@ def pytest_sessionstart(session: pytest.Session) -> None:
 
     Run by pytest before beginning collection
     """
-    del session  # We don't need the session info
+    if not session.config.option.doctest_mdcodeblocks:
+        return
 
     import doctest
     import re

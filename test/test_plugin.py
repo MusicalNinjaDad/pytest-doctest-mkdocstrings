@@ -15,5 +15,10 @@ def test_pytester(pytester):
 
 def test_patch(pytester):
     pytester.copy_example("test_patch.py")
-    result = pytester.runpytest()
+    result = pytester.runpytest("--doctest-mdcodeblocks")
     result.assert_outcomes(passed=1)
+
+def test_nopatch(pytester):
+    pytester.copy_example("test_patch.py")
+    result = pytester.runpytest()
+    result.assert_outcomes(failed=1)
