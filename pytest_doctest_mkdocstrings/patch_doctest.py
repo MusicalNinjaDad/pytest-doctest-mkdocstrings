@@ -1,5 +1,17 @@
 # noqa: D100
 import pytest
+
+
+def pytest_addoption(parser: pytest.Parser) -> None:
+    """Adds a commandline flag to enable handling markdown codeblocks in doctests."""
+
+    collectiongroup = parser.getgroup("doctest", description="Doctest parsing")
+    collectiongroup.addoption(
+        "--doctest-mdcodeblocks",
+        action = "store_true",
+        help = "Allow markdown codeblocks enclosed with triple-ticks (```) in doctests.",
+    )
+
 def pytest_sessionstart(session: pytest.Session) -> None:
     """
     Monkeypatches DocTests Regex to ignore end of codeblock marker.
