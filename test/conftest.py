@@ -27,10 +27,10 @@ def _nosettingini(pytester):
     """
     pytester.makeini(inicontents)
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def _testfile(pytester):
     pytester.copy_example("test_patch.py")
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def _pyfile(pytester):
     pytester.copy_example("codeblocks.py")
