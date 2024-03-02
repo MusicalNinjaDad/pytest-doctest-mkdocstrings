@@ -33,7 +33,7 @@ def pytest_sessionstart(session: pytest.Session) -> None:
 
     # https://github.com/python/cpython/blob/a0a8d9ffe0ddb0f55aeb02801f48e722c2660ed3/Lib/doctest.py#L613
 
-    _ORIGINAL_EXAMPLE_RE = re.compile(  # noqa: N806
+    _ORIGINAL_EXAMPLE_RE = re.compile(
         r"""
         # Source consists of a PS1 line followed by zero or more PS2 lines.
         (?P<source>
@@ -49,7 +49,7 @@ def pytest_sessionstart(session: pytest.Session) -> None:
         re.MULTILINE | re.VERBOSE,
     )
 
-    _MD_EXAMPLE_RE = re.compile(  # noqa: N806
+    _MD_EXAMPLE_RE = re.compile(
         r"""
             # Source consists of a PS1 line followed by zero or more PS2 lines.
             (?P<source>
@@ -67,10 +67,10 @@ def pytest_sessionstart(session: pytest.Session) -> None:
     )
 
     p = doctest.DocTestParser
-    if p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE:  # noqa: SLF001
-        p._EXAMPLE_RE = _MD_EXAMPLE_RE  # noqa: SLF001
-    elif p._EXAMPLE_RE == _MD_EXAMPLE_RE:  # noqa: SLF001
+    if p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE:
+        p._EXAMPLE_RE = _MD_EXAMPLE_RE
+    elif p._EXAMPLE_RE == _MD_EXAMPLE_RE:
         pass
     else:
-        parsermismatch = f"Unexpected doctest parser encountered. Expected {_ORIGINAL_EXAMPLE_RE}, got {p._EXAMPLE_RE}"  # noqa: SLF001
+        parsermismatch = f"Unexpected doctest parser encountered. Expected {_ORIGINAL_EXAMPLE_RE}, got {p._EXAMPLE_RE}"
         raise ValueError(parsermismatch)

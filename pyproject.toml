@@ -81,6 +81,8 @@ ignore = [
     "W292", # Too much typing to add newline at end of each file
     "W293", # Whitespace only lines are OK for us
     "TRY003", # Don't make custom exceptions for everything, use standard ones and pass a message
+    "N806", # Allow constants within functions
+    "SLF001", # We are patching doctest internals - don't complain!
     ]
 extend-select = [
     "D211", # We want D211 - no blank line before class docstring
