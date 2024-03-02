@@ -17,6 +17,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "Natural Language :: English",
 ]
+dependencies = [
+    "pytest",
+]
 
 [project.urls]
 Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
@@ -31,56 +34,77 @@ version = {file = "__version__"}
 [tool.setuptools.packages.find]
 where = ["."]
 
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    ]
+
 [project.entry-points.pytest11]
 doctest_markup = "pytest_doctest_mkdocstrings.patch_doctest"
 
-# [tool.pytest.ini_options]
-# xfail_strict=true
-# addopts = [
-#     "-p pytester",
-# ]
+[tool.pytest.ini_options]
+xfail_strict=true
+# addopts = []
+pytester_example_dir = "test/assets"
+norecursedirs = "test/assets"
 
 # [tool.coverage.run]
 # branch=true
 # omit=["test_*"]
 # dynamic_context = "test_function"
 
-# [tool.ruff]
-# line-length = 120
-# format.skip-magic-trailing-comma = false
-# format.quote-style = "double"
+[tool.ruff]
+line-length = 120
+format.skip-magic-trailing-comma = false
+format.quote-style = "double"
 
-# [tool.ruff.lint]
-# select = ["ALL"]
-# flake8-pytest-style.fixture-parentheses = false
-# flake8-annotations.mypy-init-return = true
-# pydocstyle.convention = "google"
-# ignore = [
-#     "D203", # We want D211 - no blank line before class docstring
-#     "D212", # We want D213 - Multiline docstrings start on second line
-#     "D401", # First line of docstring does not need to be in imperative mood 
-#     "ANN101", # Type annotation for `self`
-#     "ANN202", # Return type annotation for private functions
-#     "W293", # Whitespace only lines are OK for us
-#     ]
-# extend-select = [
-#     "D211", # We want D211 - no blank line before class docstring
-#     "D213", # We want D213 - Multiline docstrings start on second line
-#     "D400", # First lines should end in a period (.)
-#     "D403", # First word of the first line should be capitalized
-#     "D404", # First word of the docstring should not be "This"
-#     "D405", # Section name should be properly capitalized 
-#     "D406", # Section name should end with a newline
-#     "D407", # Dashed underline after section
-#     "D408", # Section underline should be in the line following the section's name
-#     "D409", # Section underline should match the length of its name
-# ]
+[tool.ruff.lint]
+select = ["ALL"]
+flake8-pytest-style.fixture-parentheses = false
+flake8-annotations.mypy-init-return = true
+pydocstyle.convention = "numpy"
+ignore = [
+    "D105", # Document magic methods in main docstring, not in own docstring
+    "D202", # Allow blank line after function docstring
+    "D203", # We want D211 - no blank line before class docstring
+    "D204", # No blank line after class docstring
+    "D212", # We want D213 - Multiline docstrings start on second line
+    "D401", # First line of docstring does not need to be in imperative mood
+    "D406", # Finish headings with colon (:)
+    "D407", # We're not underlining sections
+    "D417", # Undocumented arguments - need to switch off if wrapping args in `arg`
+    "E701", # One-line ifs are not great, one-liners with suppression are worse
+    "ANN101", # Type annotation for `self`
+    "ANN202", # Return type annotation for private functions
+    "ANN401", # Using Any often enough that supressing individually is pointless
+    "W291", # Double space at EOL is linebreak in md-docstring
+    "W292", # Too much typing to add newline at end of each file
+    "W293", # Whitespace only lines are OK for us
+    "TRY003", # Don't make custom exceptions for everything, use standard ones and pass a message
+    "N806", # Allow constants within functions
+    "SLF001", # We are patching doctest internals - don't complain!
+    ]
+extend-select = [
+    "D211", # We want D211 - no blank line before class docstring
+    "D213", # We want D213 - Multiline docstrings start on second line
+    "D400", # First lines should end in a period (.)
+    "D403", # First word of the first line should be capitalized
+    "D404", # First word of the docstring should not be "This"
+    "D405", # Section name should be properly capitalized
+    "D406", # Section name should end with a newline
+]
 
-# [tool.ruff.lint.per-file-ignores]
-# # Additional ignores for tests 
-# "**/test_*.py" = [
-#     "INP001", # Missing __init__.py
-#     "ANN", # Missing type annotations
-#     "S101", # Use of `assert`
-#     "D1", # Don't REQUIRE docstrings for tests - but they are nice
-#     ]
+[tool.ruff.lint.per-file-ignores]
+# Additional ignores for tests
+"test/**" = [
+    "INP001", # Missing __init__.py
+    "ANN", # Missing type annotations
+    "S101", # Use of `assert`
+    "PLR2004", # Magic number comparisons are OK in tests
+    "D1", # Don't REQUIRE docstrings for tests - but they are nice
+    ]
+
+"**/__init__.py" = [
+    "D104", # Don't require module docstring in __init__.py
+    "F401", # Unused imports are fine: using __init__.py to expose them with implicit __ALL__
+]

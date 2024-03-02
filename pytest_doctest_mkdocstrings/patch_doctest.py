@@ -1,17 +1,40 @@
 # noqa: D100
+import pytest
 
-def pytest_sessionstart(session) -> None:  # noqa: ANN001, ARG001
+
+def pytest_addoption(parser: pytest.Parser) -> None:
+    """Adds a commandline flag to enable handling markdown codeblocks in doctests."""
+
+    collectiongroup = parser.getgroup("doctest", description="Doctest parsing")
+    collectiongroup.addoption(
+        "--doctest-mdcodeblocks",
+        action = "store_true",
+        help = "Allow markdown codeblocks enclosed with triple-ticks (```) in doctests.",
+    )
+    collectiongroup.addoption(
+        "--no-doctest-mdcodeblocks",
+        action = "store_false",
+        dest = "doctest_mdcodeblocks",
+        help = "Disable allowing markdown codeblocks enclosed with triple-ticks (```) in doctests.",
+    )
+
+
+def pytest_sessionstart(session: pytest.Session) -> None:
     """
     Monkeypatches DocTests Regex to ignore end of codeblock marker.
 
     Run by pytest before beginning collection
     """
+    if not session.config.option.doctest_mdcodeblocks:
+        return
+
     import doctest
     import re
 
-# https://github.com/python/cpython/blob/a0a8d9ffe0ddb0f55aeb02801f48e722c2660ed3/Lib/doctest.py#L613
+    # https://github.com/python/cpython/blob/a0a8d9ffe0ddb0f55aeb02801f48e722c2660ed3/Lib/doctest.py#L613
 
-    _ORIGINAL_EXAMPLE_RE = re.compile(r"""
+    _ORIGINAL_EXAMPLE_RE = re.compile(
+        r"""
         # Source consists of a PS1 line followed by zero or more PS2 lines.
         (?P<source>
             (?:^(?P<indent> [ ]*) >>>    .*)    # PS1 line
@@ -22,9 +45,12 @@ def pytest_sessionstart(session) -> None:  # noqa: ANN001, ARG001
                      (?![ ]*>>>)  # Not a line starting with PS1
                      .+$\n?       # But any other line
                   )*)
-        """, re.MULTILINE | re.VERBOSE)  # noqa: N806
+        """,
+        re.MULTILINE | re.VERBOSE,
+    )
 
-    _MD_EXAMPLE_RE = re.compile(r"""
+    _MD_EXAMPLE_RE = re.compile(
+        r"""
             # Source consists of a PS1 line followed by zero or more PS2 lines.
             (?P<source>
                 (?:^(?P<indent> [ ]*) >>>    .*)    # PS1 line
@@ -36,8 +62,15 @@ def pytest_sessionstart(session) -> None:  # noqa: ANN001, ARG001
                         (?![ ]*>>>)  # Not a line starting with PS1
                         .+$\n?       # But any other line
                     )*)
-            """, re.MULTILINE | re.VERBOSE)  # noqa: N806
+            """,
+        re.MULTILINE | re.VERBOSE,
+    )
 
     p = doctest.DocTestParser
-    assert p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE  # noqa: S101, SLF001
-    p._EXAMPLE_RE = _MD_EXAMPLE_RE  # noqa: SLF001
+    if p._EXAMPLE_RE == _ORIGINAL_EXAMPLE_RE:
+        p._EXAMPLE_RE = _MD_EXAMPLE_RE
+    elif p._EXAMPLE_RE == _MD_EXAMPLE_RE:
+        pass
+    else:
+        parsermismatch = f"Unexpected doctest parser encountered. Expected {_ORIGINAL_EXAMPLE_RE}, got {p._EXAMPLE_RE}"
+        raise ValueError(parsermismatch)
