@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-doctest-mkdocstrings"
-description = "Run pytest --doctest-modules with markdown docstrings (code blocks)"
+description = "Run pytest --doctest-modules with markdown docstrings in code blocks (```)"
 readme = "README.md"
 authors = [{name = "Mike Foster"}]
 dynamic = ["version"]
