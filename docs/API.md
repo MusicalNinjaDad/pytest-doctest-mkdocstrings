@@ -1,1 +1,1 @@
-::: pytest_doctest_mkdocstrings.patch_doctest
+::: pytest_doctest_mkdocstrings.doctest_mdcodeblocks

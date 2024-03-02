@@ -43,7 +43,7 @@ dev = [
     ]
 
 [project.entry-points.pytest11]
-doctest_markup = "pytest_doctest_mkdocstrings.patch_doctest"
+doctest_mdcodeblocks = "pytest_doctest_mkdocstrings.doctest_mdcodeblocks"
 
 [tool.pytest.ini_options]
 xfail_strict=true
