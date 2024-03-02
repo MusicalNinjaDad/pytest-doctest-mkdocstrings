@@ -7,7 +7,7 @@ pytest_plugins = ["pytester"]
 def _codeblocksini(pytester):
     inicontents = """
     [pytest]
-    addopts = --doctest-mdcodeblocks --doctest-modules
+    addopts = --doctest-mdcodeblocks --doctest-modules --doctest-glob="*.md"
     """
     pytester.makeini(inicontents)
 
@@ -15,7 +15,7 @@ def _codeblocksini(pytester):
 def _disabledcodeblocksini(pytester):
     inicontents = """
     [pytest]
-    addopts = --no-doctest-mdcodeblocks --doctest-modules
+    addopts = --no-doctest-mdcodeblocks --doctest-modules --doctest-glob="*.md"
     """
     pytester.makeini(inicontents)
 
@@ -23,7 +23,7 @@ def _disabledcodeblocksini(pytester):
 def _nosettingini(pytester):
     inicontents = """
     [pytest]
-    addopts = --doctest-modules
+    addopts = --doctest-modules --doctest-glob="*.md"
     """
     pytester.makeini(inicontents)
 
@@ -34,3 +34,7 @@ def _testfile(pytester):
 @pytest.fixture(autouse=True)
 def _pyfile(pytester):
     pytester.copy_example("codeblocks.py")
+
+@pytest.fixture(autouse=True)
+def _mdfile(pytester):
+    pytester.copy_example("docs.md")
