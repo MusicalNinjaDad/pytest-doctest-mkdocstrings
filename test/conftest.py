@@ -15,7 +15,7 @@ def _codeblocksini(pytester):
 def _disabledcodeblocksini(pytester):
     inicontents = """
     [pytest]
-    addopts = --no-doctest-mdcodeblocks
+    addopts = --no-doctest-mdcodeblocks --doctest-modules
     """
     pytester.makeini(inicontents)
 
