@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-doctest-mkdocstrings"
-description = "Run pytest --doctest-modules with markdown docstrings (code blocks)"
+description = "Run pytest --doctest-modules with markdown docstrings in code blocks (```)"
 readme = "README.md"
 authors = [{name = "Mike Foster"}]
 dynamic = ["version"]
@@ -23,10 +23,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
-# # Documentation = "https://github.com/MusicalNinjaDad/recurtools"
+Documentation = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
 Repository = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
 Issues = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings/issues"
-# # Changelog = ""
+Changelog = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings/blob/main/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = {file = "__version__"}
@@ -36,11 +36,14 @@ where = ["."]
 
 [project.optional-dependencies]
 dev = [
+    "mkdocs",
+    "mkdocstrings[python]",
+    "mkdocs-material",
     "ruff",
     ]
 
 [project.entry-points.pytest11]
-doctest_markup = "pytest_doctest_mkdocstrings.patch_doctest"
+doctest_mdcodeblocks = "pytest_doctest_mkdocstrings.doctest_mdcodeblocks"
 
 [tool.pytest.ini_options]
 xfail_strict=true
@@ -48,9 +51,9 @@ xfail_strict=true
 pytester_example_dir = "test/assets"
 norecursedirs = "test/assets"
 
-# [tool.coverage.run]
-# branch=true
-# omit=["test_*"]
+[tool.coverage.run]
+branch=true
+omit=["test_*"]
 # dynamic_context = "test_function"
 
 [tool.ruff]

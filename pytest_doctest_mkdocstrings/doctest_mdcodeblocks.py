@@ -1,9 +1,13 @@
-# noqa: D100
+"""Implements the following pytest hooks."""
 import pytest
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:
-    """Adds a commandline flag to enable handling markdown codeblocks in doctests."""
+    """
+    Adds a commandline flag to enable/disable handling of markdown codeblocks in doctests.
+    
+    Run by pytest during initialisation.
+    """
 
     collectiongroup = parser.getgroup("doctest", description="Doctest parsing")
     collectiongroup.addoption(
@@ -21,9 +25,9 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 
 def pytest_sessionstart(session: pytest.Session) -> None:
     """
-    Monkeypatches DocTests Regex to ignore end of codeblock marker.
+    Monkeypatches the regex in doctest.DocTestParser to consider the end of codeblock marker as the end of an example.
 
-    Run by pytest before beginning collection
+    Run by pytest before beginning test collection.
     """
     if not session.config.option.doctest_mdcodeblocks:
         return
