@@ -1,0 +1,61 @@
+site_name: "pytest-docstest-mkdocstrings"
+repo_url: https://github.com/MusicalNinjaDad/pytest-docstest-mkdocstrings
+repo_name: MusicalNinjaDad/pytest-docstest-mkdocstrings
+
+watch:
+- pytest_doctest_mkdocstrings # To update live preview when docstrings change
+
+theme:
+  name: "material"
+  icon:
+    logo: material/language-markdown-outline
+  palette: # Palette toggles for auto-light-dark mode
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/link
+      name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default 
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to system preference
+  features:
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+
+plugins:
+- search
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          show_bases: false
+          show_root_heading: true
+          heading_level: 2
+          show_root_full_path: false
+          show_symbol_type_toc: true
+          docstring_section_style: table
+          docstring_options:
+            ignore_init_summary: true
+          merge_init_into_class: true
+
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+- Home:
+  - index.md
+- usage.md
+- API.md

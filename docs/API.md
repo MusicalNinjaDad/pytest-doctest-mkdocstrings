@@ -1,0 +1,1 @@
+::: pytest_doctest_mkdocstrings.patch_doctest
