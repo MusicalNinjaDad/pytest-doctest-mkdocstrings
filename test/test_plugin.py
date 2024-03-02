@@ -37,3 +37,8 @@ def test_noini(pytester, runoptions, results):
 def test_inioption_disabled(pytester, runoptions, results):
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
+
+@pytest.mark.usefixtures("_pyfile", "_nosettingini")
+def test_docstrings(pytester):
+    testresult = pytester.runpytest()
+    assert testresult.parseoutcomes() == {"passed": 1, "failed": 1}
