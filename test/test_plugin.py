@@ -2,12 +2,12 @@ import pytest
 
 # Need to wait for https://github.com/pytest-dev/pytest/pull/11298 before fully parameterising these tests
 
-@pytest.mark.usefixtures("_codeblocksini", "_testfile")
+@pytest.mark.usefixtures("_codeblocksini", "_testfile", "_pyfile")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
-        pytest.param("", {"passed": 1},id="No override"),
-        pytest.param("--doctest-mdcodeblocks", {"passed": 1},id="Duplication"),
-        pytest.param("--no-doctest-mdcodeblocks", {"failed":1}, id="Override"),
+        pytest.param("", {"passed": 3},id="No override"),
+        pytest.param("--doctest-mdcodeblocks", {"passed": 3},id="Duplication"),
+        pytest.param("--no-doctest-mdcodeblocks", {"failed" : 2, "passed": 1}, id="Override"),
     ],
 )
 def test_inioption_set(pytester, runoptions, results):
