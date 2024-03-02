@@ -3,7 +3,7 @@
 
 name: Verify pushed code
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
