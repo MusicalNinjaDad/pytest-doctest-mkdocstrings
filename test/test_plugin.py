@@ -14,12 +14,12 @@ def test_inioption_set(pytester, runoptions, results):
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
 
-@pytest.mark.usefixtures("_testfile")
+@pytest.mark.usefixtures("_nosettingini", "_testfile", "_pyfile")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
-        pytest.param("", {"failed": 1},id="Default"),
-        pytest.param("--doctest-mdcodeblocks", {"passed": 1},id="Enabled"),
-        pytest.param("--no-doctest-mdcodeblocks", {"failed":1}, id="Disabled"),
+        pytest.param("", {"failed" : 2, "passed": 1},id="Default"),
+        pytest.param("--doctest-mdcodeblocks", {"passed": 3},id="Enabled"),
+        pytest.param("--no-doctest-mdcodeblocks", {"failed" : 2, "passed": 1}, id="Disabled"),
     ],
 )
 def test_noini(pytester, runoptions, results):
@@ -37,8 +37,3 @@ def test_noini(pytester, runoptions, results):
 def test_inioption_disabled(pytester, runoptions, results):
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
-
-@pytest.mark.usefixtures("_pyfile", "_nosettingini")
-def test_docstrings(pytester):
-    testresult = pytester.runpytest()
-    assert testresult.parseoutcomes() == {"passed": 1, "failed": 1}
