@@ -20,4 +20,4 @@ _MD_EXAMPLE_RE = re.compile(
 
 def test_patched():
     p = doctest.DocTestParser
-    assert p._EXAMPLE_RE == _MD_EXAMPLE_RE  # noqa: SLF001
+    assert p._EXAMPLE_RE == _MD_EXAMPLE_RE
