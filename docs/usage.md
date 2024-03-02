@@ -25,4 +25,8 @@ addopts = [
 ]
 ```
 
-then use `pytest --no-doctest-mdcodeblocks` to temporarily override the setting.
+## Disabling the plugin
+
+You can completely disable the plugin by adding the command line option `-p no:doctest_mdcodeblocks` to pytest (via addopts or on the command line).
+
+To override activation via pytest.ini for a specific test session use `pytest --no-doctest-mdcodeblocks` on the commandline.
