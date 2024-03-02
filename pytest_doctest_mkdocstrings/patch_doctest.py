@@ -11,6 +11,13 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         action = "store_true",
         help = "Allow markdown codeblocks enclosed with triple-ticks (```) in doctests.",
     )
+    collectiongroup.addoption(
+        "--no-doctest-mdcodeblocks",
+        action = "store_false",
+        dest = "doctest_mdcodeblocks",
+        help = "Disable allowing markdown codeblocks enclosed with triple-ticks (```) in doctests.",
+    )
+
 
 def pytest_sessionstart(session: pytest.Session) -> None:
     """
