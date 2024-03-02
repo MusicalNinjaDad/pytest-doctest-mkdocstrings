@@ -20,3 +20,7 @@ def _disabledcodeblocksini(pytester):
     """
 
     pytester.makeini(inicontents)
+
+@pytest.fixture
+def _testfile(pytester):
+    pytester.copy_example("test_patch.py")

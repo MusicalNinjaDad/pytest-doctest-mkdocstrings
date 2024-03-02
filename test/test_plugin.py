@@ -2,7 +2,7 @@ import pytest
 
 # Need to wait for https://github.com/pytest-dev/pytest/pull/11298 before fully parameterising these tests
 
-@pytest.mark.usefixtures("_codeblocksini")
+@pytest.mark.usefixtures("_codeblocksini", "_testfile")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
         pytest.param("", {"passed": 1},id="No override"),
@@ -11,10 +11,10 @@ import pytest
     ],
 )
 def test_inioption_set(pytester, runoptions, results):
-    pytester.copy_example("test_patch.py")
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
 
+@pytest.mark.usefixtures("_testfile")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
         pytest.param("", {"failed": 1},id="Default"),
@@ -23,11 +23,10 @@ def test_inioption_set(pytester, runoptions, results):
     ],
 )
 def test_noini(pytester, runoptions, results):
-    pytester.copy_example("test_patch.py")
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
 
-@pytest.mark.usefixtures("_disabledcodeblocksini")
+@pytest.mark.usefixtures("_disabledcodeblocksini", "_testfile")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
         pytest.param("", {"failed": 1},id="No override"),
@@ -36,6 +35,5 @@ def test_noini(pytester, runoptions, results):
     ],
 )
 def test_inioption_disabled(pytester, runoptions, results):
-    pytester.copy_example("test_patch.py")
     testresult = pytester.runpytest(runoptions)
     assert testresult.parseoutcomes() == results
