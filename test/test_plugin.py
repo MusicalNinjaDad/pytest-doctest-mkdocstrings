@@ -5,9 +5,9 @@ import pytest
 @pytest.mark.usefixtures("_codeblocksini")
 @pytest.mark.parametrize(("runoptions", "results"),
     [
-        pytest.param("", {"passed": 3},id="No override"),
-        pytest.param("--doctest-mdcodeblocks", {"passed": 3},id="Duplication"),
-        pytest.param("--no-doctest-mdcodeblocks", {"failed" : 2, "passed": 1}, id="Override"),
+        pytest.param("", {"passed": 4},id="No override"),
+        pytest.param("--doctest-mdcodeblocks", {"passed": 4},id="Duplication"),
+        pytest.param("--no-doctest-mdcodeblocks", {"failed" : 3, "passed": 1}, id="Override"),
     ],
 )
 def test_inioption_set(pytester, runoptions, results):

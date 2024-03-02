@@ -3,7 +3,7 @@
 Some documentation in an md file which contains codeblocks like this:
 
 ```pycon
->>> 1 = 1
+>>> 1 == 1
 True
 ```
 
