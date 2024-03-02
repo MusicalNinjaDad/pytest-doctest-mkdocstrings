@@ -7,7 +7,7 @@ pytest_plugins = ["pytester"]
 def _codeblocksini(pytester):
     inicontents = """
     [pytest]
-    doctest-mdcodeblocks = true
+    addopts = --doctest-mdcodeblocks
     """
 
     pytester.makeini(inicontents)
