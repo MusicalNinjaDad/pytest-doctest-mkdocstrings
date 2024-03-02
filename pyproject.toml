@@ -23,10 +23,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
-# # Documentation = "https://github.com/MusicalNinjaDad/recurtools"
+Documentation = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
 Repository = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings"
 Issues = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings/issues"
-# # Changelog = ""
+Changelog = "https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings/blob/main/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = {file = "__version__"}
@@ -51,9 +51,9 @@ xfail_strict=true
 pytester_example_dir = "test/assets"
 norecursedirs = "test/assets"
 
-# [tool.coverage.run]
-# branch=true
-# omit=["test_*"]
+[tool.coverage.run]
+branch=true
+omit=["test_*"]
 # dynamic_context = "test_function"
 
 [tool.ruff]

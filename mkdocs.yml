@@ -1,6 +1,6 @@
-site_name: "pytest-docstest-mkdocstrings"
-repo_url: https://github.com/MusicalNinjaDad/pytest-docstest-mkdocstrings
-repo_name: MusicalNinjaDad/pytest-docstest-mkdocstrings
+site_name: "pytest-doctest-mkdocstrings"
+repo_url: https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings
+repo_name: MusicalNinjaDad/pytest-doctest-mkdocstrings
 
 watch:
 - pytest_doctest_mkdocstrings # To update live preview when docstrings change
