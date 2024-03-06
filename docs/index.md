@@ -1,4 +1,4 @@
-# pytest-doctest-mkdocstrings
+# About
 
 A pytest plugin that allows you to use doctest and enclose your example code blocks in ` ``` ` codeblocks (e.g. when building documentation with mkdocs and mkdocstring).
 

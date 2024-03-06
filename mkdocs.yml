@@ -27,7 +27,7 @@ theme:
   features:
     - navigation.expand
     - navigation.path
-    - navigation.indexes
+    # - navigation.indexes
     - navigation.tabs
     - toc.integrate
 
@@ -57,9 +57,9 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
+- recurtools:
+  - https://musicalninjadad.github.io/recurtools
 - pytest-doctest-mkdocstrings:
   - index.md
   - usage.md
-  - API.md
-- recurtools:
-  - https://musicalninjadad.github.io/recurtools
+  - API_Reference.md
