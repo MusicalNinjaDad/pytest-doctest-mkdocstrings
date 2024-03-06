@@ -29,6 +29,7 @@ theme:
     - navigation.path
     - navigation.indexes
     - navigation.tabs
+    - toc.integrate
 
 plugins:
 - search
