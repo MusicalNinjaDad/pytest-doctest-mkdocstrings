@@ -1,4 +1,4 @@
-site_name: "pytest-doctest-mkdocstrings"
+site_name: "MusicalNinja libraries"
 repo_url: https://github.com/MusicalNinjaDad/pytest-doctest-mkdocstrings
 repo_name: MusicalNinjaDad/pytest-doctest-mkdocstrings
 
@@ -27,7 +27,8 @@ theme:
   features:
     - navigation.expand
     - navigation.path
-    - navigation.indexes
+    - navigation.tabs
+    - toc.integrate
 
 plugins:
 - search
@@ -40,7 +41,11 @@ plugins:
           heading_level: 2
           show_root_full_path: false
           show_symbol_type_toc: true
-          docstring_section_style: table
+          show_symbol_type_heading: true
+          signature_crossrefs: true
+          separate_signature: true
+          show_signature_annotations: true
+          docstring_section_style: spacy
           docstring_options:
             ignore_init_summary: true
           merge_init_into_class: true
@@ -55,7 +60,9 @@ markdown_extensions:
       format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
-- Home:
+- recurtools:
+  - https://musicalninjadad.github.io/recurtools
+- pytest-doctest-mkdocstrings:
   - index.md
-- usage.md
-- API.md
+  - usage.md
+  - API_Reference.md
