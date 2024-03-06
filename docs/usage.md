@@ -4,6 +4,13 @@ After installation you can invoke pytest with the command line option `--doctest
 
 You also need to specifically add `--doctest-modules` and/or `--doctest-glob="*.md"` to actually run doctest in your pytest session.
 
+
+## Installation
+
+1. **Strongly recommended** to set up a virtual environment first! (e.g.. `python3 -m venv .venv`, `. .venv/bin/activate`)
+1. Install with `pip install pytest-doctest-mkdocstrings`
+
+
 ## Command line
 
 To run pytest and doctest all modules and all .md files:
