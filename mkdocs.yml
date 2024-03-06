@@ -27,7 +27,6 @@ theme:
   features:
     - navigation.expand
     - navigation.path
-    # - navigation.indexes
     - navigation.tabs
     - toc.integrate
 
